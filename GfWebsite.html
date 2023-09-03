@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+      
+  <head>
+    <title>
+      My GF's Website
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="stylesheet" href="GfWEbsite.css">
+      <body class="background">
+        <div class="headers">
+          <div class="firsthead">
+            <p class="home1">
+              Hello <span class="gf"> My Love</span>
+            </p>
+         
+          </div>
+        </div>
+        
+        <div class="container" id="container">
+          <p>This is the initial content.</p>
+          <button class="button" id="backButton" disabled>Back</button>
+          <button class="button" id="nextButton">Next</button>
+        </div>
+        <script>
+          const container = document.getElementById("container");
+          const backButton = document.getElementById("backButton");
+          const nextButton = document.getElementById("nextButton");
+          let step = 0;
+          let contents = [
+            "Happy Monthsarry Love",
+            "It's hard to believe how quickly time has flown by since we started this incredible journey together. Despite the distance that separates us, every moment we share feels like it's bringing us closer..",
+            "I am grateful for your patience, understanding, and unwavering commitment to us. Your smile on the other side of the screen brightens up even my darkest days. You've shown me the true meaning of trust, loyalty, and companionship. With each passing day, I find myself falling in love with you all over again.",
+            "Until then, my love, let's continue to cherish our moments, support each other's dreams, and celebrate the beautiful love story we're building, one pixel at a time. I love you so much!" 
+          ];
+        
+          function updateContainer() {
+            container.innerHTML = `
+              <p>${contents[step]}</p>
+              <button class="button" id="backButton" ${step === 0 ? 'disabled' : ''}>Back</button>
+              <button class="button" id="nextButton">Next</button>
+             
+            `;
+            
+            const updatedBackButton = document.getElementById("backButton");
+            const updatedNextButton = document.getElementById("nextButton");
+            const textContentElement = document.getElementById("textContent");
+        
+            updatedBackButton.addEventListener("click", handleBack);
+            updatedNextButton.addEventListener("click", handleNext);
+            textContentElement.addEventListener("input", handleTextChange);
+          }
+        
+          function handleBack() {
+            if (step > 0) {
+              step--;
+              updateContainer();
+            }
+          }
+        
+          function handleNext() {
+            if (step < contents.length - 1) {
+              step++;
+              updateContainer();
+            }
+          }
+        
+          function handleTextChange(event) {
+            contents[step] = event.target.value;
+          }
+        
+          updateContainer();
+        </script>
+
+        </body>
+    </head>
+  </html>
